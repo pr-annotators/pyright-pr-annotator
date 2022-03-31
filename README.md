@@ -1,10 +1,10 @@
-# {tool-name} PR Annotator
+# Pyright PR Annotator
 
 ## Usage
 
-Annotate pull requests with {tool-name} errors detected during CI.
+Annotate pull requests with pyright errors detected during CI.
 
-Note: This doesn't install or run {tool-name}, it just sets up the PR annotations.
+Note: This doesn't install or run pyright, it just sets up the PR annotations.
 
 ### Example workflow
 
@@ -17,19 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.8"
-        
-      - name: Install {tool-name}
-        run: |
-          pip install {tool-name}
+      - name: Add pyright annotator
+        uses: pr-annotators/pyright-pr-annotator@master
 
-      - name: Add {tool-name} annotator
-        uses: jpy-git/{tool-name}-pr-annotator@master
-
-      - name: Run {tool-name}
-        run: |
-          {tool-name} src/
+      - name: Run pyright
+        uses: jakebailey/pyright-action@v1
 ```
